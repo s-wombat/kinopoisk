@@ -5,17 +5,51 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
+{{--                    <a href="{{ route('dashboard') }}">--}}
+{{--                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />--}}
+{{--                    </a>--}}
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    <nav class="nav nav-pills flex-column flex-sm-row" style="border:1px red solid;">
+                        <div class="col">
+                            <x-logo-navigation-home></x-logo-navigation-home>
+                            <x-nav-link :href="route('home')" class="flex-sm-fill text-sm-center nav-link" aria-current="page">{{ __('Главная') }}</x-nav-link>
+                        </div>
+                        <div class="col">
+                            <x-logo-navigation-star></x-logo-navigation-star>
+                            <x-nav-link :href="route('thebest')" class="flex-sm-fill text-sm-center nav-link">{{ __('Лучшее') }}</x-nav-link>
+                        </div>
+                        <div class="col">
+                            <x-logo-navigation-camera></x-logo-navigation-camera>
+                            <x-nav-link :href="route('categories')" class="flex-sm-fill text-sm-center nav-link">{{ __('Жанры') }}</x-nav-link>
+                        </div>
+                    </nav>
+{{--                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">--}}
+{{--                        {{ __('Dashboard') }}--}}
+{{--                    </x-nav-link>--}}
                 </div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                <div class="col">
+                                    <x-logo-navigation-home></x-logo-navigation-home>
+                                    <x-nav-link :href="route('home')" class="flex-sm-fill text-sm-center nav-link" aria-current="page">{{ __('Главная') }}</x-nav-link>
+                                </div>
+                                <div class="col">
+                                    <x-logo-navigation-star></x-logo-navigation-star>
+                                    <x-nav-link :href="route('thebest')" class="flex-sm-fill text-sm-center nav-link">{{ __('Лучшее') }}</x-nav-link>
+                                </div>
+                                <div class="col">
+                                    <x-logo-navigation-camera></x-logo-navigation-camera>
+                                    <x-nav-link :href="route('categories')" class="flex-sm-fill text-sm-center nav-link">{{ __('Жанры') }}</x-nav-link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
             </div>
 
             <!-- Settings Dropdown -->
