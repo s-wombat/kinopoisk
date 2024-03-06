@@ -4,11 +4,11 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+{{--                <div class="shrink-0 flex items-center">--}}
 {{--                    <a href="{{ route('dashboard') }}">--}}
 {{--                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />--}}
 {{--                    </a>--}}
-                </div>
+{{--                </div>--}}
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -30,28 +30,24 @@
 {{--                        {{ __('Dashboard') }}--}}
 {{--                    </x-nav-link>--}}
                 </div>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav">
-                                <div class="col">
-                                    <x-logo-navigation-home></x-logo-navigation-home>
-                                    <x-nav-link :href="route('home')" class="flex-sm-fill text-sm-center nav-link" aria-current="page">{{ __('Главная') }}</x-nav-link>
-                                </div>
-                                <div class="col">
-                                    <x-logo-navigation-star></x-logo-navigation-star>
-                                    <x-nav-link :href="route('thebest')" class="flex-sm-fill text-sm-center nav-link">{{ __('Лучшее') }}</x-nav-link>
-                                </div>
-                                <div class="col">
-                                    <x-logo-navigation-camera></x-logo-navigation-camera>
-                                    <x-nav-link :href="route('categories')" class="flex-sm-fill text-sm-center nav-link">{{ __('Жанры') }}</x-nav-link>
-                                </div>
-                            </div>
-                        </div>
+
+                @if (Route::has('login'))
+                    <div class="collapse navbar-collapse col-6 justify-content-end" id="navbarNav">
+                        @auth
+                            <a href="{{ url('/dashboard') }}" class="btn btn-outline-light me-2">Dashboard</a>
+                        @else
+
+                            <a href="{{ route('login') }}" class="btn btn-outline-light me-2">{{ __('Войти') }}</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="btn btn-warning">{{ __('Создать аккаунт') }}</a>
+                            @endif
+                        @endauth
                     </div>
-                </nav>
+                @endif
             </div>
 
+            @auth()
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -85,6 +81,7 @@
                     </x-slot>
                 </x-dropdown>
             </div>
+            @endauth
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -98,37 +95,39 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+    @auth()
+        <!-- Responsive Navigation Menu -->
+        <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
                 </x-responsive-nav-link>
+            </div>
 
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+            <!-- Responsive Settings Options -->
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="px-4">
+                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                </div>
 
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                <div class="mt-3 space-y-1">
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        {{ __('Profile') }}
                     </x-responsive-nav-link>
-                </form>
+
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <x-responsive-nav-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    @endauth
 </nav>
