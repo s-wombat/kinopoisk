@@ -10,16 +10,13 @@ class Role extends Model
 {
     use HasFactory;
 
-    const USER = 1;
-    const ADMIN = 2;
-    const SUPERADMIN = 3;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'role'
+        'name'
     ];
 
     public function users(): HasMany

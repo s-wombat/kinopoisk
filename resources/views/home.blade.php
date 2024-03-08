@@ -1,11 +1,11 @@
 <x-app-layout>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <x-slot name="header">
-            <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-                {{ __('Лучшее') }}
+            <h2 class="font-semibold text-xl text-gray-700 leading-tight">
+                {{ __('Главная  ') }}
             </h2>
         </x-slot>
-
+{{-- 
         @auth()
             <div class="py-12">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -16,7 +16,8 @@
                     </div>
                 </div>
             </div>
-        @endauth
+        @endauth --}}
+        {{-- {{ dd(Auth::user()->role) }} --}}
 
         <div class="flex justify-between">
             <div class="flex justify-between max-w-sm bg-white border border-yellow-200 rounded-lg shadow dark:bg-yellow-800 dark:border-gray-700">

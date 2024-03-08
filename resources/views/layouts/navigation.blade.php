@@ -23,6 +23,7 @@
                 @if (Route::has('login'))
                     <div class="flex items-center space-x-2">
                         @auth
+                   <x-nav-link :href="(route('users.index'))" class="text-gray bg-slate-300 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 text-gray-500 bg-slate-300 hover:text-gray-700 hover:bg-gray-50 focus:outline-none transition ease-in-out duration-150">Users</x-nav-link>
 {{--                    <x-nav-link :href="(url('/dashboard'))" class="inline-flex items-center rounded-md bg-none px-3 py-2 text-sm font-semibold text-slate-400 shadow-sm ring-1 ring-inset ring-white hover:bg-gray-50">Dashboard</x-nav-link>--}}
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
                             <x-dropdown align="right" width="48">
