@@ -12,6 +12,7 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
+    CONST SUPER_EMAIL = 'superadmin@example.com';
     /**
      * Display a listing of the resource.
      */
@@ -20,6 +21,7 @@ class UserController extends Controller
         $users = User::paginate(10);
         return view('users.index', [
             'users' => $users,
+            'superEmail' => self::SUPER_EMAIL
         ]);
     }
 
@@ -28,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
+        $roles = $this->getRoles();
         return view('users.create', [
             'roles' => $roles,
         ]);
@@ -65,15 +67,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        // $users = User::all();
-        // dd($users);
-        // $user = User::find($id);
-        $roles = collect(Role::all());
-$c = $roles->dot();
-        // $user = User::first();
-        // dd($user);
-// $roles = Role::get();
-dd($c->all());
+        $roles = $this->getRoles();
+
+        $user = User::find($id);
 
         return view('users.edit', compact('user', 'roles'));
     }
@@ -109,5 +105,14 @@ dd($c->all());
         $user = User::find($id);
         $user->delete();
         return redirect()->route('users.index');
+    }
+
+    private function getRoles(): array
+    {
+        $rolesCollection = Role::all()->map(function ($item, $key){
+            return [$item->id => $item->name];
+        })->all();
+        $intermediateArr=array_merge(...$rolesCollection);
+        return array_combine(range(1, count($intermediateArr)), $intermediateArr);
     }
 }
