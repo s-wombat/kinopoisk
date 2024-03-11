@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -16,7 +18,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(10);
-        // dd($users);
         return view('users.index', [
             'users' => $users,
         ]);
@@ -36,15 +37,14 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         $validated = $request->validated();
-
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'role' => $validated['role']
+            'role_id' => $validated['role']
         ]);
         $user->save();
 
@@ -65,8 +65,17 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
-        return view('users.edit', compact('user'));
+        // $users = User::all();
+        // dd($users);
+        // $user = User::find($id);
+        $roles = collect(Role::all());
+$c = $roles->dot();
+        // $user = User::first();
+        // dd($user);
+// $roles = Role::get();
+dd($c->all());
+
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -78,17 +87,15 @@ class UserController extends Controller
             'name' => ['sometimes', 'max:255'],
             'email' => ['sometimes', 'email'],
             'password' => ['sometimes',  Password::min(3)->sometimes()],
-            'role' => ['required', 'boolean'],
+            'role' => ['required', 'integer'],
         ]);
-
         $user = User::find($id);
         $user->name = $validator['name'];
         $user->email = $validator['email'];
-
         if(isset($validator['password'])) {
             $user->password = Hash::make($validator['password']);
         }
-        $user->role = $validator['role'];
+        $user->role_id = $validator['role'];
         $user->save();
 
         return redirect()->route('users.index');

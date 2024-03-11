@@ -24,7 +24,7 @@
                 <a href="#">
                     <div class="p-5">
                         <img src="{{ Vite::image('boys.png') }}" class="rounded" alt="Boys">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ __("Пацаны") }}</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ __("Пацаны") }}</h5>
                         <p class="mb-3 font-normal text-tray-700 dark:text-gray-400">{{ __("Оценка") }} <span class="px-3 py-1 rounded-md bg-yellow-400">7.9</span></p>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ __("Действие сериала разворачивается в мире, где люди, обладающие сверхспособностями, являются настоящими знаменитостями и всеобщими любимцами.") }}</p>
                     </div>
@@ -34,7 +34,7 @@
                 <a href="#">
                     <div class="p-5">
                         <img src="{{ Vite::image('mandalorian.png') }}" class="rounded" alt="Mandalorian">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ __("Мандалорец") }}</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ __("Мандалорец") }}</h5>
                         <p class="mb-3 font-normal text-tray-700 dark:text-gray-400">{{ __("Оценка") }} <span class="px-3 py-1 rounded-md bg-yellow-400">7.9</span></p>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ __("Действие переносит зрителя на пять лет вперед после падения Галактической Империи и рассказывает историю молчаливого наемника, зарабатывающего на жизнь отловом беглых преступников в самых отдаленных звездных системах.") }}</p>
                     </div>
@@ -44,7 +44,7 @@
                 <a href="#">
                     <div class="p-5">
                         <img src="{{ Vite::image('bourne-identity.jpg') }}" class="rounded" alt="Bourne Identity">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ __("Идентификация Борна") }}</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ __("Идентификация Борна") }}</h5>
                         <p class="mb-3 font-normal text-tray-700 dark:text-gray-400">{{ __("Оценка") }} <span class="px-3 py-1 rounded-md bg-yellow-400">7.9</span></p>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ __("Посреди Средиземного моря рыбаками было поднято на борт тело еле живого молодого парня. Он ничего не помнит, единственные зацепки, которые могут ему поведать о прошлом и кто он есть - несколько шрамов от пулевых ранений, микро-чип вживленный под кожу и номер банковского счета в Швейцарии.") }}</p>
                     </div>
