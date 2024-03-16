@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
@@ -37,6 +38,10 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('users', UserController::class);
+    Route::resource('films', FilmController::class);
+    Route::controller(FilmController::class)->group(function () {
+        Route::post('/upload', 'upload')->name('image.upload');
+    });
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
