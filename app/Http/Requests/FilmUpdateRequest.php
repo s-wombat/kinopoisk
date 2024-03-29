@@ -27,18 +27,20 @@ class FilmUpdateRequest extends FormRequest
             'name' => ['string', 'max:255'],
             'description' => ['string'],
             'date_release' => ['date'],
-//            'preview' => [
-//                File::image()
-//                    ->min(20)
-//                    ->max(12 * 1024)
-////                    ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
-//            ],
-//            'poster' => [
-//                File::image()
-//                    ->min(20)
-//                    ->max(12 * 1024)
-////                    ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
-//            ],
+            'preview' => [
+                'nullable',
+                File::image()
+                    ->min(20)
+                    ->max(12 * 1024)
+                    ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
+            ],
+            'poster' => [
+                'nullable',
+                File::image()
+                    ->min(20)
+                    ->max(12 * 1024)
+                    ->dimensions(Rule::dimensions()->maxWidth(3000)->maxHeight(3000)),
+            ],
             'categories' => ['array']
         ];
     }

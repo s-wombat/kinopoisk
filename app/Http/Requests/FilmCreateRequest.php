@@ -38,8 +38,8 @@ class FilmCreateRequest extends FormRequest
                 'required',
                 File::image()
                     ->min(20)
-                    ->max(12 * 1024),
-//                    ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
+                    ->max(12 * 1024)
+                    ->dimensions(Rule::dimensions()->maxWidth(3000)->maxHeight(3000)),
             ],
             'categories' => ['required', 'array']
         ];

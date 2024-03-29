@@ -14,6 +14,7 @@
             @if(isset($film))
                 action="{{ route('films.update', $film->id) }}"
             @endif
+            enctype="multipart/form-data"
         >
             @method('PUT')
             @csrf
@@ -40,6 +41,7 @@
             <div class="mt-4">
                 <x-input-label for="preview" :value="__('Preview')" />
                 <input type="file" name="preview" id="">
+                <img src="{{ asset('/storage/' . $film->preview) }}" alt="">
             </div>
             <div class="mt-4">
                 <x-input-label for="poster" :value="__('Poster')" />

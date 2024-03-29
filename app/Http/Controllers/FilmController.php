@@ -7,6 +7,7 @@ use App\Http\Requests\FilmUpdateRequest;
 use App\Models\Category;
 use App\Models\Film;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FilmController extends Controller
 {
@@ -45,20 +46,15 @@ class FilmController extends Controller
      */
     public function store(FilmCreateRequest $request)
     {
-        dd($request);
         $validated = $request->validated();
 
         $preview = $request->file('preview');
         $namePreview = $preview->getClientOriginalName();
-        $pathPreview = $request->file('preview')->storeAs(
-            'preview', $namePreview, 'public'
-        );
+        $pathPreview = Storage::putFileAs('preview', $request->file('preview'), $namePreview);
 
         $poster = $request->file('poster');
         $namePoster = $poster->getClientOriginalName();
-        $pathPoster = $request->file('poster')->storeAs(
-            'poster', $namePoster, 'public'
-        );
+        $pathPoster = Storage::putFileAs('poster', $request->file('poster'), $namePoster);
 
         $film = Film::create([
             'name' => $validated['name'],
@@ -100,28 +96,39 @@ class FilmController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FilmUpdateRequest $request, string $id)
     {
-//        $film = Film::find($id);
-//        dd($film);
-        dd($request);
-        $preview = $request->file('preview');
-        $namePreview = $preview->getClientOriginalName();
-        $pathPreview = $request->file('preview')->storeAs(
-            'preview', $namePreview, 'public'
-        );
         $validator = $request->validated();
+        $film = Film::find($id);
         $preview = $request->file('preview');
-        dd($validator);
-//        $user = Film::find($id);
-//
-//
-//        $user->name = $validator['name'];
-//        $user->description = $validator['description'];
-//        $user->date_release = $validator['date_release'];
-//        $user->save();
+        if ($preview) {
+            Storage::delete($film->preview);
+            $namePreview = $preview->getClientOriginalName();
+            $pathPreview = Storage::putFileAs('preview', $request->file('preview'), $namePreview);
+        } else {
+            $pathPreview = $film->preview;
+        }
 
-        return redirect()->route('users.index');
+        $poster = $request->file('poster');
+        if ($poster) {
+            Storage::delete($film->poster);
+            $namePoster = $poster->getClientOriginalName();
+            $pathPoster = Storage::putFileAs('poster', $request->file('poster'), $namePoster);
+        } else {
+            $pathPoster = $film->poster;
+        }
+
+        $film = Film::find($id);
+        $film->name = $validator['name'];
+        $film->description = $validator['description'];
+        $film->date_release = $validator['date_release'];
+        $film->preview = $pathPreview;
+        $film->poster = $pathPoster;
+        $film->save();
+
+        $film->categories()->sync($validator['categories']);
+
+        return redirect()->route('films.index');
     }
 
     /**
@@ -129,7 +136,11 @@ class FilmController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $film = Film::find($id);
+        Storage::delete([$film->preview, $film->poster]);
+        $film->delete();
+
+        return redirect()->route('films.index');
     }
 
     private function getCategories(): array
