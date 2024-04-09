@@ -30,7 +30,7 @@ class FilmCreateRequest extends FormRequest
             'preview' => [
                 'required',
                 File::image()
-                    ->min(20)
+                    ->min(10)
                     ->max(12 * 1024)
                     ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
             ],

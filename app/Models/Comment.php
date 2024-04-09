@@ -11,11 +11,10 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
-        'date_release',
-        'preview',
-        'poster'
+        'user_id',
+        'film_id',
+        'comment',
+        'rating',
     ];
 
     public function user(): BelongsTo

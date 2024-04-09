@@ -15,23 +15,23 @@
                 <th scope="col" class="px-6 py-3">
                     #
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-center">
                     Preview
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-center">
                     Name
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-center">
                     Description
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-center">
                     Date_release
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-center">
                     Category
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Options</span>
+                <th scope="col" class="px-6 py-3 text-center">
+                    Options
                 </th>
             </tr>
             </thead>

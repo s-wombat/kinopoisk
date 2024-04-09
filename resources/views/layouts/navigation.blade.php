@@ -5,7 +5,7 @@
             <!-- Navigation Links -->
             <div class="hidden md:block">
                 <div class="flex space-x-4">
-                    <x-nav-link :href="route('home')" class="text-gray-200 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
+                    <x-nav-link :href="route('main.home')" class="text-gray-200 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
                         <x-logo-nav.home></x-logo-nav.home>
                         {{ __('Главная') }}
                     </x-nav-link>

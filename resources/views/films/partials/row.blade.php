@@ -1,6 +1,6 @@
 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        <a href="{{ route('films.show', $film->id) }}">{{ $film->id }}</a>
+        {{ $film->id }}
     </th>
     <td class="px-6 py-4">
         <img src="{{ asset('/storage/' . $film->preview) }}" alt="">
@@ -20,7 +20,7 @@
         @endforeach
     </td>
     <td class="px-6 py-4 text-right">
-        <form action="{{ route('films.destroy', $film->id) }}" method="POST">
+        <form action="{{ route('films.destroy', $film->id) }}" method="POST" class="px-6 py-4 flex justify-start content-center">
             <x-buttons.primary-link :href="route('films.edit',$film->id)">{{ __('Edit') }}</x-buttons.primary-link>
             @csrf
             @method('DELETE')

@@ -57,8 +57,8 @@ class FilmController extends Controller
         $pathPoster = Storage::putFileAs('poster', $request->file('poster'), $namePoster);
 
         $film = Film::create([
-            'name' => $validated['name'],
-            'description' => $validated['description'],
+            'name' => trim($validated['name']),
+            'description' => trim($validated['description']),
             'date_release' => $validated['date_release'],
             'preview' => $pathPreview,
             'poster' => $pathPoster,
@@ -119,8 +119,8 @@ class FilmController extends Controller
         }
 
         $film = Film::find($id);
-        $film->name = $validator['name'];
-        $film->description = $validator['description'];
+        $film->name = trim($validator['name']);
+        $film->description = trim($validator['description']);
         $film->date_release = $validator['date_release'];
         $film->preview = $pathPreview;
         $film->poster = $pathPoster;

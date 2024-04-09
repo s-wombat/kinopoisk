@@ -30,7 +30,7 @@ class FilmUpdateRequest extends FormRequest
             'preview' => [
                 'nullable',
                 File::image()
-                    ->min(20)
+                    ->min(10)
                     ->max(12 * 1024)
                     ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
             ],
