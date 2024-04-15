@@ -25,8 +25,6 @@ class SendEmailSubscribeNotification implements ShouldQueue
     {
         $eventFilm = $event->film->toArray();
         $user = $event->user;
-//        dd($user);
         Mail::to($user)->send(new NewFilm($eventFilm));
-//        Mail::to($user)->send(new SubscribeNews($eventFilm, $user));
     }
 }

@@ -21,9 +21,7 @@ class SubscribeNews
         public $film,
         public $user,
     )
-    {
-//        dd($film);
-    }
+    {}
 
     /**
      * Get the channels the event should broadcast on.
