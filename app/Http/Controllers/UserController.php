@@ -115,4 +115,17 @@ class UserController extends Controller
         $intermediateArr=array_merge(...$rolesCollection);
         return array_combine(range(1, count($intermediateArr)), $intermediateArr);
     }
+
+    public function subscribeChoice()
+    {
+        return view('users.subscribe');
+    }
+
+    public function subscribeStore(string $id)
+    {
+        $user = User::find($id);
+        $user->subscribe = true;
+        $user->save();
+        return redirect()->route('users.index');
+    }
 }

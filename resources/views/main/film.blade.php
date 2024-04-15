@@ -10,7 +10,6 @@
                         name="rating"
                         required
                         :options="$rating"
-                        :selectedOptions="$film->rating"
                         class="block mt-1 w-full"
                 />
                 <x-textarea id="comment" class="block mt-1 w-full" type="text" name="comment" :value="old('comment')" required autocomplete="comment" placeholder="Комментарий" />
@@ -25,15 +24,17 @@
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" >{{ __($film->name) }}</h5>
                 <p class="mb-3 font-normal text-tray-700 dark:text-gray-400" >{{ __("Оценка") }} <span class="px-3 py-1 rounded-md bg-yellow-400">{{ $film->rating }}</span></p>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400" >{{ __($film->description) }}</p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ __("Добавлен " . $film->created_at->format('d/m/Y')) }}</p>
             </div>
             <div class="p-2">
                 <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Отзывы</h5>
                 @foreach($comments as $comment)
-                    <div class="p-3">
-                        <p>Пользователь: <span class="font-black">{{ $comment->user . ' ' . $comment->email }}</span></p>
-                        <p class="text-blue-600 indent-8">{{ $comment->comment }}</p>
-                        <p class="mb-3 font-normal text-tray-700 dark:text-gray-400" >-- {{ __("Оценка") }} <span class="px-3 py-1 rounded-md bg-yellow-400">{{ $comment->rating }}</span></p>
-                    </div>
+                    <x-my-items.comment
+                            :user="$comment->user"
+                            :email="$comment->email"
+                            :comment="$comment->comment"
+                            :rating="$comment->rating"
+                    />
                 @endforeach
             </div>
         </div>

@@ -7,15 +7,15 @@
                 <div class="flex space-x-4">
                     <x-nav-link :href="route('main.home')" class="text-gray-200 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
                         <x-logo-nav.home></x-logo-nav.home>
-                        {{ __('Главная') }}
+                        <span class="ml-2 text-2xl">{{ __('Главная') }}</span>
                     </x-nav-link>
                     <x-nav-link :href="route('thebest')" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                     <x-logo-nav.star></x-logo-nav.star>
-                        {{ __('Лучшее') }}
+                        <span class="ml-2 text-2xl">{{ __('Лучшее') }}</span>
                     </x-nav-link>
                     <x-nav-link :href="route('categories')" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                     <x-logo-nav.camera></x-logo-nav.camera>
-                        {{ __('Жанры') }}
+                        <span class="ml-2 text-2xl">{{ __('Жанры') }}</span>
                     </x-nav-link>
                 </div>
             </div>
@@ -23,8 +23,9 @@
                 @if (Route::has('login'))
                     <div class="flex items-center space-x-2">
                         @auth
-                       <x-nav-link :href="(route('films.index'))" class="text-gray bg-slate-300 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 text-gray-500 bg-slate-300 hover:text-gray-700 hover:bg-gray-50 focus:outline-none transition ease-in-out duration-150">Films</x-nav-link>
-                       <x-nav-link :href="(route('users.index'))" class="text-gray bg-slate-300 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 text-gray-500 bg-slate-300 hover:text-gray-700 hover:bg-gray-50 focus:outline-none transition ease-in-out duration-150">Users</x-nav-link>
+                       <x-nav-link :href="(route('users.subscribeChoice'))" class="text-gray bg-slate-300 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 text-gray-500 bg-slate-300 hover:text-gray-700 hover:bg-gray-50 focus:outline-none transition ease-in-out duration-150">{{ __('Подписка на новости') }}</x-nav-link>
+                       <x-nav-link :href="(route('films.index'))" class="text-gray bg-slate-300 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 text-gray-500 bg-slate-300 hover:text-gray-700 hover:bg-gray-50 focus:outline-none transition ease-in-out duration-150">{{ __('Films') }}</x-nav-link>
+                       <x-nav-link :href="(route('users.index'))" class="text-gray bg-slate-300 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 text-gray-500 bg-slate-300 hover:text-gray-700 hover:bg-gray-50 focus:outline-none transition ease-in-out duration-150">{{ __('Users') }}</x-nav-link>
 {{--                    <x-nav-link :href="(url('/dashboard'))" class="inline-flex items-center rounded-md bg-none px-3 py-2 text-sm font-semibold text-slate-400 shadow-sm ring-1 ring-inset ring-white hover:bg-gray-50">Dashboard</x-nav-link>--}}
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
                             <x-dropdown align="right" width="48">

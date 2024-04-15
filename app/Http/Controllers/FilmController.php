@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SubscribeNews;
 use App\Http\Requests\FilmCreateRequest;
 use App\Http\Requests\FilmUpdateRequest;
 use App\Models\Category;
 use App\Models\Film;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class FilmController extends Controller
@@ -65,6 +67,8 @@ class FilmController extends Controller
         ]);
         $film->save();
         $film->categories()->attach($validated['categories']);
+
+        event(new SubscribeNews($film, Auth::user()));
 
         return redirect()->route('films.index');
     }
