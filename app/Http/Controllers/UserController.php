@@ -116,16 +116,18 @@ class UserController extends Controller
         return array_combine(range(1, count($intermediateArr)), $intermediateArr);
     }
 
-    public function subscribeChoice()
-    {
-        return view('users.subscribe');
-    }
-
-    public function subscribeStore(string $id)
+    public function subscribeToNews(string $id)
     {
         $user = User::find($id);
         $user->subscribe = true;
         $user->save();
-        return redirect()->route('users.index');
+        return redirect()->back();
+    }
+    public function unSubscribeToNews(string $id)
+    {
+        $user = User::find($id);
+        $user->subscribe = false;
+        $user->save();
+        return redirect()->back();
     }
 }

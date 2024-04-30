@@ -40,8 +40,8 @@ Route::middleware('auth')->group(function () {
         'films' => FilmController::class,
     ]);
     Route::controller(UserController::class)->name('users.')->group(function() {
-        Route::get('/subscribe', 'subscribeChoice')->name('subscribeChoice');
-        Route::post('/subscribe/{id}', 'subscribeStore')->name('subscribeStore');
+        Route::post('/subscribe/{id}', 'subscribeToNews')->name('subscribeToNews');
+        Route::post('/unsubscribe/{id}', 'unSubscribeToNews')->name('unSubscribeToNews');
     });
     Route::controller(FilmController::class)->name('image.')->group(function () {
         Route::post('/upload', 'upload')->name('upload');

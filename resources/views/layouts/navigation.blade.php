@@ -23,7 +23,11 @@
                 @if (Route::has('login'))
                     <div class="flex items-center space-x-2">
                         @auth
-                       <x-nav-link :href="(route('users.subscribeChoice'))" class="text-gray bg-slate-300 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 text-gray-500 bg-slate-300 hover:text-gray-700 hover:bg-gray-50 focus:outline-none transition ease-in-out duration-150">{{ __('Подписка на новости') }}</x-nav-link>
+                        <!-- Modal toggle -->
+                            <button id="subscribeChoice" data-modal-target="subscribeModal" data-modal-toggle="subscribeModal" class="block text-gray bg-slate-300 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 text-gray-500 bg-slate-300 hover:text-gray-700 hover:bg-gray-50 focus:outline-none transition ease-in-out duration-150" type="button">
+                                {{ __('Подписка на новости') }}
+                            </button>
+                        <!-- -->
                        <x-nav-link :href="(route('films.index'))" class="text-gray bg-slate-300 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 text-gray-500 bg-slate-300 hover:text-gray-700 hover:bg-gray-50 focus:outline-none transition ease-in-out duration-150">{{ __('Films') }}</x-nav-link>
                        <x-nav-link :href="(route('users.index'))" class="text-gray bg-slate-300 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 text-gray-500 bg-slate-300 hover:text-gray-700 hover:bg-gray-50 focus:outline-none transition ease-in-out duration-150">{{ __('Users') }}</x-nav-link>
 {{--                    <x-nav-link :href="(url('/dashboard'))" class="inline-flex items-center rounded-md bg-none px-3 py-2 text-sm font-semibold text-slate-400 shadow-sm ring-1 ring-inset ring-white hover:bg-gray-50">Dashboard</x-nav-link>--}}
@@ -123,3 +127,9 @@
         @endauth
     </div>
 </nav>
+    @include('users.modal.subscribe-choice')
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        document.getElementById('subscribeChoice').click();
+    });
+</script>
